@@ -1,26 +1,20 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/wait.h>
-
-int main(int argc, char *argv[])
+using System;
+using System.Diagnostics;
+class Program
 {
-    int pid; 
-    pid = fork();
-     if (pid < 0)
-     {
-        printf("fork failed");
-        exit (1);
-     }
-     else if (pid == 0)
-     {
-     execlp("whoami", "whoami", NULL);
-     exit (0);
-     }
-     else
-    {
-     printf("\n Process ID is: %d\n", getpid());
-     wait (NULL);
-     return 0;
-    }
+static void Main(string[] args)
+{
+Console.WriteLine("\n Process ID is: " + Process.GetCurrentProcess().Id);
+try
+{
+Process p = Process.Start("whoami");
+p.WaitForExit();
+}
+catch (Exception ex)
+{
+Console.WriteLine("Failed to start process: " + ex.Message);
+Environment.Exit(1);
+}
+Environment.Exit(0);
+}
 }
