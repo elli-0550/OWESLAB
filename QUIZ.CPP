@@ -7,11 +7,11 @@ using namespace std;
 
 int main() {
     int n{5};
-    double wtavg{0}, tatavg{0};
+    double wtavg{0.0}, tatavg{0.0};
 
     vector<int> p(n);
     vector<double> bt{50.54, 10.11, 33.34, 2.5, 101.1};
-    vector<int> wt(n), tat(n);
+    vector<double> wt(n), tat(n);
 
     for (int i = 0; i < n; i++) {
         p[i] = i;
